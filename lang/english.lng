@@ -1,7 +1,7 @@
 ﻿##grflangid 0x01
-STR_GRF_NAME                                :Multi Aspect Signals
+STR_GRF_NAME                                :Polish Multi Aspect Signals
 STR_GRF_DESCRIPTION                         :{}Multi Aspect Signals{}{}This GRF includes 4-aspect signal graphics (red, yellow, double-yellow, green) for the block signal, PBS and one-way PBS signal types (light signals not semaphores).{}This GRF requires an OpenTTD version which supports this feature such as JGR's patchpack v0.43.0 or later.{}Realistic braking must be enabled for extra signal aspects to be used.{}{}License: GPL v2
-STR_GRF_URL                                 :https://github.com/JGRennison/multi-aspect-signals-grf
+STR_GRF_URL                                 :https://github.com/JGRennison/polish-multi-aspect-signals-grf
 
 STR_PARAM_BLOCK_STYLE_NAME                  :Block signal style
 STR_PARAM_BLOCK_STYLE_DESC                  :This sets the visual style for normal block signals
@@ -10,12 +10,6 @@ STR_BLOCK_STYLE_TRADITIONAL                 :Traditional
 
 STR_PARAM_ROUTING_RESTRICTIONS_NAME         :Show routing restrictions
 STR_PARAM_ROUTING_RESTRICTIONS_DESC         :When enabled, signals with routing restriction programs atttached are shown with a blue signal post
-
-STR_PARAM_ASPECT_STYLE_NAME                 :Signal aspect sequence
-STR_PARAM_ASPECT_STYLE_DESC                 :This sets the aspect sequence style
-STR_ASPECT_STYLE_3                          :3 Aspect (R -> Y -> G)
-STR_ASPECT_STYLE_4                          :4 Aspect British (R -> Y -> YY -> G)
-STR_ASPECT_STYLE_4_JAPANESE                 :4 Aspect Japanese (R -> YY -> Y -> G)
 
 STR_PARAM_CUSTOM_STYLES_NAME                :Extra signal styles
 STR_PARAM_CUSTOM_STYLES_DESC                :Enable extra signal styles: shunt and banner repeater signals{}{}Requires an OpenTTD version which supports this feature such as JGR's patchpack v0.48.0 or later.
@@ -33,5 +27,9 @@ STR_UNSUPPORTED_VERTICAL_CLEARANCE          :This OpenTTD version does not suppo
 
 STR_STYLE_SHUNT                             :Shunt
 STR_STYLE_SHUNT_OPPOSITE                    :Shunt (opposite side)
+STR_STYLE_SHUNT_TALL                        :Shunt tall
+STR_STYLE_SHUNT_TALL_OPPOSITE               :Shunt tall (opposite side)
+STR_STYLE_SHUNT_MECHANICAL                  :Shunt mechanical
+STR_STYLE_SHUNT_MECHANICAL_OPPOSITE         :Shunt mechanical (opposite side)
 STR_STYLE_BANNER                            :Banner repeater
-STR_STYLE_COMBINED                          :Combined normal/shunt
+STR_STYLE_COMBINED                          :With light strip
