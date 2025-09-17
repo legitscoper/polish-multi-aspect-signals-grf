@@ -5,27 +5,13 @@
 */
 
 grf {
-    grfid: "JGR\81";
+    grfid: "2137";
     name: string(STR_GRF_NAME);
     desc: string(STR_GRF_DESCRIPTION);
     version: 5;
     min_compatible_version: 0;
     url: string(STR_GRF_URL);
 
-    param {
-        param_block_style {
-            type: int;
-            name: string(STR_PARAM_BLOCK_STYLE_NAME);
-            desc: string(STR_PARAM_BLOCK_STYLE_DESC);
-            min_value: 0;
-            max_value: 1;
-            def_value: 0;
-            names: {
-                0: string(STR_BLOCK_STYLE_TRADITIONAL);
-                1: string(STR_BLOCK_STYLE_NEW);
-            };
-        }
-    }
     param {
         param_routing_restriction {
             type: bool;
@@ -35,26 +21,11 @@ grf {
         }
     }
     param {
-        param_aspect_style {
-            type: int;
-            name: string(STR_PARAM_ASPECT_STYLE_NAME);
-            desc: string(STR_PARAM_ASPECT_STYLE_DESC);
-            min_value: 0;
-            max_value: 2;
-            def_value: 1;
-            names: {
-                0: string(STR_ASPECT_STYLE_3);
-                1: string(STR_ASPECT_STYLE_4);
-                2: string(STR_ASPECT_STYLE_4_JAPANESE);
-            };
-        }
-    }
-    param {
         param_custom_styles {
             type: bool;
             name: string(STR_PARAM_CUSTOM_STYLES_NAME);
             desc: string(STR_PARAM_CUSTOM_STYLES_DESC);
-            def_value: 0;
+            def_value: 1;
         }
     }
     param {
@@ -97,27 +68,24 @@ replace(param[10]) {
     }
 }
 
-if (param_block_style == 1 || param_pbs_height == 0) {
-    param[11] = 0;
+
+if (param_pbs_height == 2) {
+    param[11] = 0x100;
 } else {
-    if (param_pbs_height == 2) {
-        param[11] = 0x100;
+    if (extended_feature_test("varaction2_signals_signal_vertical_clearance")) {
+        param[11] = 14;
     } else {
-        if (extended_feature_test("varaction2_signals_signal_vertical_clearance")) {
-            param[11] = 14;
-        } else {
-            param[11] = 0;
-        }
+        param[11] = 0;
     }
 }
 
-if (param_block_style == 1 && param_pbs_height != 0) {
-    error(NOTICE, string(STR_UNSUPPORTED_PBS_HEIGHT_COMBINATION));
-} else {
-    if (param_pbs_height == 1 && !extended_feature_test("varaction2_signals_signal_vertical_clearance")) {
-        error(NOTICE, string(STR_UNSUPPORTED_VERTICAL_CLEARANCE));
-    }
+
+
+
+if (param_pbs_height == 1 && !extended_feature_test("varaction2_signals_signal_vertical_clearance")) {
+    error(NOTICE, string(STR_UNSUPPORTED_VERTICAL_CLEARANCE));
 }
+
 
 template tmpl_signals(x,y) {
     [x +   0, y, 20, 30, -9, -28] // ne-sw
@@ -128,6 +96,17 @@ template tmpl_signals(x,y) {
     [x + 240, y, 20, 30, -9, -28] // w-e
     [x + 360, y, 20, 30, -9, -28] // s-n
     [x + 420, y, 20, 30, -9, -28] // n-s
+}
+
+template tmpl_signals_shunt(x,y) {
+    [x +   0, y, 20, 30, 8, -39] // ne-sw
+    [x +  60, y, 20, 30, -29, -19] // sw-ne
+    [x + 120, y, 20, 30, 11, -20] // se-nw
+    [x + 180, y, 20, 30, -26, -37] // nw-se
+    [x + 300, y, 20, 30, -10, -28] // e-w
+    [x + 240, y, 20, 30, -8, -28] // w-e
+    [x + 360, y, 20, 30, -10, -43] // s-n
+    [x + 420, y, 20, 30, -7, -15] // n-s
 }
 
 template tmpl_signals_combined(x, y) {
@@ -182,9 +161,17 @@ spriteset (signals_pbs_oneway_green_short, "gfx/light-generic.png") { tmpl_pbs_s
 spriteset (signals_pbs_oneway_y_short,     "gfx/light-generic.png") { tmpl_pbs_signals(10, 363) }
 spriteset (signals_pbs_oneway_yy_short,    "gfx/light-generic.png") { tmpl_pbs_signals(26, 363) }
 
-spriteset (signals_shunt_red,   "gfx/shunt.png") { tmpl_signals(10, 50) }
-spriteset (signals_shunt_white, "gfx/shunt.png") { tmpl_signals(40, 50) }
-spriteset (signals_shunt_no_entry, "gfx/shunt.png") { tmpl_signals(10, 100) }
+spriteset (signals_shunt_red,   "gfx/shunt.png") { tmpl_signals_shunt(10, 50) }
+spriteset (signals_shunt_white, "gfx/shunt.png") { tmpl_signals_shunt(40, 50) }
+spriteset (signals_shunt_no_entry, "gfx/shunt.png") { tmpl_signals_shunt(10, 100) }
+
+spriteset (signals_shunt_red_tall,   "gfx/shunt-tall.png") { tmpl_signals_shunt(10, 50) }
+spriteset (signals_shunt_white_tall, "gfx/shunt-tall.png") { tmpl_signals_shunt(40, 50) }
+spriteset (signals_shunt_no_entry_tall, "gfx/shunt-tall.png") { tmpl_signals_shunt(10, 100) }
+
+spriteset (signals_shunt_red_mechanical,   "gfx/shunt-mech.png") { tmpl_signals_shunt(10, 50) }
+spriteset (signals_shunt_white_mechanical, "gfx/shunt-mech.png") { tmpl_signals_shunt(40, 50) }
+spriteset (signals_shunt_no_entry_mechanical, "gfx/shunt-mech.png") { tmpl_signals_shunt(10, 100) }
 
 spriteset (signals_block_banner_on,       "gfx/banner.png") { tmpl_signals(10,  50) }
 spriteset (signals_block_banner_off,      "gfx/banner.png") { tmpl_signals(40,  50) }
@@ -217,44 +204,44 @@ spriteset (signals_combined_oneway_y_short,     "gfx/light-combined-short.png") 
 spriteset (signals_combined_oneway_yy_short,    "gfx/light-combined-short.png") { tmpl_signals_combined(40, 250) }
 spriteset (signals_combined_oneway_shunt_short, "gfx/light-combined-short.png") { tmpl_signals_combined(10, 300) }
 
-switch(FEAT_SIGNALS, SELF, signal_switch_block_traditional, [
+switch(FEAT_SIGNALS, SELF, signal_switch_block, [
         STORE_TEMP(hasbit(extra_callback_info2, 24) ? param[10] : 0, 0x100),
         (extra_callback_info2 & 0x000000FF)
     ]) {
     0: signals_block_red;
     1: signals_block_green;
-    param_aspect_style == 2 ? 3 : 2: signals_block_y;
-    param_aspect_style == 2 ? 2 : 3: signals_block_yy;
+    2: signals_block_y;
+    3: signals_block_yy;
 }
-
+/* 
 switch(FEAT_SIGNALS, SELF, signal_switch_block_new, [
         STORE_TEMP(param[10] + (hasbit(extra_callback_info2, 24) ? 2 : 1), 0x100),
         (extra_callback_info2 & 0x000000FF)
     ]) {
     0: signals_new_block_red;
     1: signals_new_block_green;
-    param_aspect_style == 2 ? 3 : 2: signals_new_block_y;
-    param_aspect_style == 2 ? 2 : 3: signals_new_block_yy;
-}
-
+    2: signals_new_block_y;
+    3: signals_new_block_yy;
+}*/
+/*
 switch (FEAT_SIGNALS, SELF, signal_switch_block, param_block_style) {
     0: signal_switch_block_traditional;
     1: signal_switch_block_new;
 }
-
+*/
 switch(FEAT_SIGNALS, SELF, signal_switch_pbs_std, [
         STORE_TEMP(param[10] + (hasbit(extra_callback_info2, 24) ? 2 : 1), 0x100),
         (extra_callback_info2 & 0x000000FF)
     ]) {
     0: signals_pbs_red;
     1: signals_pbs_green;
-    param_aspect_style == 2 ? 3 : 2: signals_pbs_y;
-    param_aspect_style == 2 ? 2 : 3: signals_pbs_yy;
+    2: signals_pbs_y;
+    3: signals_pbs_yy;
 }
 
 switch(FEAT_SIGNALS, SELF, signal_switch_pbs, signal_vertical_clearance < param[11]) {
     default: signal_switch_pbs_std;
-    1: signal_switch_block_new;
+    //1: signal_switch_block_new;
 }
 
 switch(FEAT_SIGNALS, SELF, signal_switch_pbs_oneway, [
@@ -263,15 +250,16 @@ switch(FEAT_SIGNALS, SELF, signal_switch_pbs_oneway, [
     ]) {
     0: signals_pbs_oneway_red;
     1: signals_pbs_oneway_green;
-    param_aspect_style == 2 ? 3 : 2: signals_pbs_oneway_y;
-    param_aspect_style == 2 ? 2 : 3: signals_pbs_oneway_yy;
+    2: signals_pbs_oneway_y;
+    3: signals_pbs_oneway_yy;
 
     0x100: signals_pbs_oneway_red_short;
     0x101: signals_pbs_oneway_green_short;
-    param_aspect_style == 2 ? 0x103 : 0x102: signals_pbs_oneway_y_short;
-    param_aspect_style == 2 ? 0x102 : 0x103: signals_pbs_oneway_yy_short;
+    0x102: signals_pbs_oneway_y_short;
+    0x103: signals_pbs_oneway_yy_short;
 }
 
+// Normal light shunt
 switch(FEAT_SIGNALS, SELF, signal_switch_shunt, [
         STORE_TEMP(hasbit(extra_callback_info2, 24) ? param[10] : 0, 0x100),
         (extra_callback_info2 & 0x000000FF)
@@ -285,6 +273,37 @@ switch(FEAT_SIGNALS, SELF, signal_switch_shunt_no_entry, [
         (extra_callback_info2 & 0x000000FF)
     ]) {
     signals_shunt_no_entry;
+}
+// Tall shunt
+switch(FEAT_SIGNALS, SELF, signal_switch_shunt_tall, [
+        STORE_TEMP(hasbit(extra_callback_info2, 24) ? param[10] : 0, 0x100),
+        (extra_callback_info2 & 0x000000FF)
+    ]) {
+    0: signals_shunt_red_tall;
+    signals_shunt_white_tall;
+}
+
+switch(FEAT_SIGNALS, SELF, signal_switch_shunt_no_entry_tall, [
+        STORE_TEMP(hasbit(extra_callback_info2, 24) ? param[10] : 0, 0x100),
+        (extra_callback_info2 & 0x000000FF)
+    ]) {
+    signals_shunt_no_entry_tall;
+}
+
+// Mechanical shunt
+switch(FEAT_SIGNALS, SELF, signal_switch_shunt_mechanical, [
+        STORE_TEMP(hasbit(extra_callback_info2, 24) ? param[10] : 0, 0x100),
+        (extra_callback_info2 & 0x000000FF)
+    ]) {
+    0: signals_shunt_red_mechanical;
+    signals_shunt_white_mechanical;
+}
+
+switch(FEAT_SIGNALS, SELF, signal_switch_shunt_no_entry_mechanical, [
+        STORE_TEMP(hasbit(extra_callback_info2, 24) ? param[10] : 0, 0x100),
+        (extra_callback_info2 & 0x000000FF)
+    ]) {
+    signals_shunt_no_entry_mechanical;
 }
 
 switch(FEAT_SIGNALS, SELF, signal_switch_banner_block, [
@@ -320,14 +339,14 @@ switch(FEAT_SIGNALS, SELF, signal_switch_combined_pbs, [
     ]) {
     0: signals_combined_red;
     1: signals_combined_green;
-    param_aspect_style == 2 ? 3 : 2: signals_combined_y;
-    param_aspect_style == 2 ? 2 : 3: signals_combined_yy;
+    2: signals_combined_y;
+    3: signals_combined_yy;
     0xFF: signals_combined_shunt;
 
     0x100: signals_combined_red_short;
     0x101: signals_combined_green_short;
-    param_aspect_style == 2 ? 0x103 : 0x102: signals_combined_y_short;
-    param_aspect_style == 2 ? 0x102 : 0x103: signals_combined_yy_short;
+    0x102: signals_combined_y_short;
+    0x103: signals_combined_yy_short;
     0x1FF: signals_combined_shunt_short;
 }
 
@@ -337,14 +356,14 @@ switch(FEAT_SIGNALS, SELF, signal_switch_combined_pbs_oneway, [
     ]) {
     0: signals_combined_oneway_red;
     1: signals_combined_oneway_green;
-    param_aspect_style == 2 ? 3 : 2: signals_combined_oneway_y;
-    param_aspect_style == 2 ? 2 : 3: signals_combined_oneway_yy;
+    2: signals_combined_oneway_y;
+    3: signals_combined_oneway_yy;
     0xFF: signals_combined_oneway_shunt;
 
     0x100: signals_combined_oneway_red_short;
     0x101: signals_combined_oneway_green_short;
-    param_aspect_style == 2 ? 0x103 : 0x102: signals_combined_oneway_y_short;
-    param_aspect_style == 2 ? 0x102 : 0x103: signals_combined_oneway_yy_short;
+    0x102: signals_combined_oneway_y_short;
+    0x103: signals_combined_oneway_yy_short;
     0x1FF: signals_combined_oneway_shunt_short;
 }
 
@@ -354,8 +373,16 @@ switch(FEAT_SIGNALS, SELF, switch_signals, (extra_callback_info2 & 0x00FFFF00) |
     0x50000: signal_switch_pbs_oneway;   //light, PBS oneway
     0x40001: signal_switch_shunt;        //shunt
     0x40002: signal_switch_shunt;        //shunt (opposite)
+    0x40005: signal_switch_shunt_tall;         // shunt tall
+    0x40006: signal_switch_shunt_tall;         // shunt tall (opposite)
+    0x40007: signal_switch_shunt_mechanical;         // shunt mechanical
+    0x40008: signal_switch_shunt_mechanical;         // shunt mechanical (opposite)
     0x70001: signal_switch_shunt_no_entry; //shunt no entry
     0x70002: signal_switch_shunt_no_entry; //shunt no entry (opposite)
+    0x70005: signal_switch_shunt_no_entry_tall; //shunt no entry tall
+    0x70006: signal_switch_shunt_no_entry_tall; //shunt no entry tall (opposite)
+    0x70007: signal_switch_shunt_no_entry_mechanical; //shunt no entry mechanical
+    0x70008: signal_switch_shunt_no_entry_mechanical; //shunt no entry mechanical (opposite)
         0x3: signal_switch_banner_block; //banner, block
     0x40003: signal_switch_banner_pbs;   //banner, PBS
     0x50003: signal_switch_banner_pbs_oneway; //banner, PBS oneway
@@ -368,7 +395,7 @@ item (FEAT_SIGNALS, custom_signals, 0) {
     property {
         enable_restricted_signals: param_routing_restriction;
         enable_signal_recolour: 1;
-        extra_aspects: param_aspect_style > 0 ? 2 : 1;
+        extra_aspects: 2;
     }
 
     graphics {
@@ -405,6 +432,32 @@ if (param_custom_styles) {
             style_combined_normal_shunt: 1;
             style_electric_enabled: 0x30;
             style_realistic_braking_only: 1;
+
+            define_style: 5;
+            style_name: string(STR_STYLE_SHUNT_TALL);
+            style_electric_enabled: 0x90;
+            style_no_aspect_increase: 1;
+            style_lookahead_single_signal_only: 1;
+
+            define_style: 6;
+            style_name: string(STR_STYLE_SHUNT_TALL_OPPOSITE);
+            style_electric_enabled: 0x90;
+            style_no_aspect_increase: 1;
+            style_lookahead_single_signal_only: 1;
+            style_opposite_side: 0x1;
+
+            define_style: 7;
+            style_name: string(STR_STYLE_SHUNT_MECHANICAL);
+            style_electric_enabled: 0x90;
+            style_no_aspect_increase: 1;
+            style_lookahead_single_signal_only: 1;
+
+            define_style: 8;
+            style_name: string(STR_STYLE_SHUNT_MECHANICAL_OPPOSITE);
+            style_electric_enabled: 0x90;
+            style_no_aspect_increase: 1;
+            style_lookahead_single_signal_only: 1;
+            style_opposite_side: 0x1;
         }
     }
 }
