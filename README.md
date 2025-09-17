@@ -1,4 +1,4 @@
-# Multi-Aspect Signals NewGRF
+# Polish Multi-Aspect Signals NewGRF
 
 ![Sample image](https://raw.githubusercontent.com/wiki/JGRennison/multi-aspect-signals-grf/sample-image.png)
 
