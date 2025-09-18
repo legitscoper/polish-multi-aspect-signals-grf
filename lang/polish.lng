@@ -28,4 +28,6 @@ STR_STYLE_SHUNT_MECHANICAL                  :Manewrowy kształtowy
 STR_STYLE_SHUNT_MECHANICAL_OPPOSITE         :Manewrowy kształtowy (po drugiej stronie toru)
 STR_STYLE_BANNER                            :Tarcza ostrzegawcza
 STR_STYLE_COMBINED                          :Semafor z pasem świetlnym
+STR_STYLE_TOP_R                             :Tarcza ost. przejazdowa
+STR_STYLE_TOP_L                             :Tarcza ost. przejazdowa (lewa)
 

@@ -105,8 +105,8 @@ template tmpl_signals_shunt(x,y) {
     [x + 180, y, 20, 30, -26, -37] // nw-se
     [x + 300, y, 20, 30, -10, -28] // e-w
     [x + 240, y, 20, 30, -8, -28] // w-e
-    [x + 360, y, 20, 30, -10, -43] // s-n
-    [x + 420, y, 20, 30, -7, -15] // n-s
+    [x + 360, y, 20, 30, -10, -28] // s-n
+    [x + 420, y, 20, 30, -10, -28] // n-s
 }
 
 template tmpl_signals_combined(x, y) {
@@ -185,6 +185,19 @@ spriteset (signals_combined_green, "gfx/light-combined.png") { tmpl_signals_comb
 spriteset (signals_combined_y,     "gfx/light-combined.png") { tmpl_signals_combined(10, 100) }
 spriteset (signals_combined_yy,    "gfx/light-combined.png") { tmpl_signals_combined(40, 100) }
 spriteset (signals_combined_shunt, "gfx/light-combined.png") { tmpl_signals_combined(10, 150) }
+
+// TOP R
+spriteset (signals_top_white_r,   "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_orange_r, "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_oneway_white_r,   "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_oneway_orange_r, "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+
+// TOP L
+spriteset (signals_top_white_l,   "gfx/light-crossing-L.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_orange_l, "gfx/light-crossing-L.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_oneway_white_l,   "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_oneway_orange_l, "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+
 
 spriteset (signals_combined_red_short,   "gfx/light-combined-short.png") { tmpl_signals_combined(10, 50) }
 spriteset (signals_combined_green_short, "gfx/light-combined-short.png") { tmpl_signals_combined(40, 50) }
@@ -367,6 +380,42 @@ switch(FEAT_SIGNALS, SELF, signal_switch_combined_pbs_oneway, [
     0x1FF: signals_combined_oneway_shunt_short;
 }
 
+// TOP R
+
+switch(FEAT_SIGNALS, SELF, signal_switch_top_r, [
+        STORE_TEMP(param[10] + (hasbit(extra_callback_info2, 24) ? 2 : 1), 0x100),
+        (extra_callback_info2 & 0x000000FF) | (signal_vertical_clearance < param[11] ? 0x100 : 0)
+    ]) {
+    0: signals_top_white_r;
+    1: signals_top_orange_r;
+}
+
+switch(FEAT_SIGNALS, SELF, signal_switch_top_r_oneway, [
+        STORE_TEMP(param[10] + (hasbit(extra_callback_info2, 24) ? 2 : 1), 0x100),
+        (extra_callback_info2 & 0x000000FF) | (signal_vertical_clearance < param[11] ? 0x100 : 0)
+    ]) {
+    0: signals_top_oneway_white_r;
+    1: signals_top_oneway_orange_r;
+}
+
+// TOP L
+
+switch(FEAT_SIGNALS, SELF, signal_switch_top_l, [
+        STORE_TEMP(param[10] + (hasbit(extra_callback_info2, 24) ? 2 : 1), 0x100),
+        (extra_callback_info2 & 0x000000FF) | (signal_vertical_clearance < param[11] ? 0x100 : 0)
+    ]) {
+    0: signals_top_white_l;
+    1: signals_top_orange_l;
+}
+
+switch(FEAT_SIGNALS, SELF, signal_switch_top_l_oneway, [
+        STORE_TEMP(param[10] + (hasbit(extra_callback_info2, 24) ? 2 : 1), 0x100),
+        (extra_callback_info2 & 0x000000FF) | (signal_vertical_clearance < param[11] ? 0x100 : 0)
+    ]) {
+    0: signals_top_oneway_white_l;
+    1: signals_top_oneway_orange_l;
+}
+
 switch(FEAT_SIGNALS, SELF, switch_signals, (extra_callback_info2 & 0x00FFFF00) | signal_style) {
         0x0: signal_switch_block;        //light, block
     0x40000: signal_switch_pbs;          //light, PBS
@@ -377,6 +426,8 @@ switch(FEAT_SIGNALS, SELF, switch_signals, (extra_callback_info2 & 0x00FFFF00) |
     0x40006: signal_switch_shunt_tall;         // shunt tall (opposite)
     0x40007: signal_switch_shunt_mechanical;         // shunt mechanical
     0x40008: signal_switch_shunt_mechanical;         // shunt mechanical (opposite)
+    0x40009: signal_switch_top_r;         // top R
+    0x40010: signal_switch_top_l;         // top L
     0x70001: signal_switch_shunt_no_entry; //shunt no entry
     0x70002: signal_switch_shunt_no_entry; //shunt no entry (opposite)
     0x70005: signal_switch_shunt_no_entry_tall; //shunt no entry tall
@@ -458,6 +509,18 @@ if (param_custom_styles) {
             style_no_aspect_increase: 1;
             style_lookahead_single_signal_only: 1;
             style_opposite_side: 0x1;
+
+            define_style: 9;
+            style_name: string(STR_STYLE_TOP_R);
+            style_electric_enabled: 0x90;
+            style_no_aspect_increase: 1;
+            style_lookahead_single_signal_only: 1;
+
+            define_style: 10;
+            style_name: string(STR_STYLE_TOP_L);
+            style_electric_enabled: 0x90;
+            style_no_aspect_increase: 1;
+            style_lookahead_single_signal_only: 1;
         }
     }
 }

@@ -33,3 +33,6 @@ STR_STYLE_SHUNT_MECHANICAL                  :Shunt mechanical
 STR_STYLE_SHUNT_MECHANICAL_OPPOSITE         :Shunt mechanical (opposite side)
 STR_STYLE_BANNER                            :Banner repeater
 STR_STYLE_COMBINED                          :With light strip
+STR_STYLE_TOP_R                             :Railway crossing semaphore
+STR_STYLE_TOP_L                             :Railway crossing semaphore (opposite side)
+
