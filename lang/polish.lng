@@ -24,8 +24,8 @@ STR_STYLE_SHUNT                             :Manewrowy
 STR_STYLE_SHUNT_OPPOSITE                    :Manewrowy (po drugiej stronie toru)
 STR_STYLE_SHUNT_TALL                        :Manewrowy wysoki
 STR_STYLE_SHUNT_TALL_OPPOSITE               :Manewrowy wysoki (po drugiej stronie toru)
-STR_STYLE_SHUNT_MECHANICAL                  :Manewrowy mechaniczny
-STR_STYLE_SHUNT_MECHANICAL_OPPOSITE         :Manewrowy mechaniczny (po drugiej stronie toru)
+STR_STYLE_SHUNT_MECHANICAL                  :Manewrowy kształtowy
+STR_STYLE_SHUNT_MECHANICAL_OPPOSITE         :Manewrowy kształtowy (po drugiej stronie toru)
 STR_STYLE_BANNER                            :Tarcza ostrzegawcza
 STR_STYLE_COMBINED                          :Semafor z pasem świetlnym
 
