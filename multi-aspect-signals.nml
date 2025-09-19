@@ -514,14 +514,14 @@ if (param_custom_styles) {
 
             define_style: 0x9;
             style_name: string(STR_STYLE_TOP_R);
-            style_electric_enabled: 0x90;
+            style_electric_enabled: 0xB0;
             style_no_aspect_increase: 1;
             style_lookahead_single_signal_only: 1;
             extra_aspects: 0;
 
             define_style: 0xA;
             style_name: string(STR_STYLE_TOP_L);
-            style_electric_enabled: 0x90;
+            style_electric_enabled: 0xB0;
             style_no_aspect_increase: 1;
             style_lookahead_single_signal_only: 1;
             extra_aspects: 0;
