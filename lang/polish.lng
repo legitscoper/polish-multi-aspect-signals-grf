@@ -1,7 +1,7 @@
 ##grflangid 0x30
 STR_GRF_NAME                                :Polskie semafory PKP
 STR_GRF_DESCRIPTION                         :{}Polskie semafory PKP{}{}Ten plik GRF zawiera zestaw semaforów używanych na polskiej kolei, w tym semafory wieloaspektowe (czerwony, żółty, 2 żółte, zielony) do semaforów SBL, tras, oraz tarcze ostrzegawcze przejazdowe, czy sygnały manewrowe{}Ten GRF wymaga wersji OpenTTD version która wspiera dodatek JGR's patchpack v0.43.0 lub późniejszy.{}opcja "Realistic braking" musi być włączona, by sygnały wieloaspektowe działały.{}{}Licencja: GPL v2
-STR_GRF_URL                                 :https://github.com/JGRennison/polish-multi-aspect-signals-grf
+STR_GRF_URL                                 :https://github.com/legitscoper/polish-multi-aspect-signals-grf
 
 STR_PARAM_ROUTING_RESTRICTIONS_NAME         :Włącz restrykcje trasowania
 STR_PARAM_ROUTING_RESTRICTIONS_DESC         :When enabled, signals with routing restriction programs atttached are shown with a blue signal post

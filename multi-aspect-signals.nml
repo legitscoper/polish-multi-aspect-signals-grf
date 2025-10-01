@@ -5,7 +5,7 @@
 */
 
 grf {
-    grfid: "2137";
+    grfid: "PRS\2";
     name: string(STR_GRF_NAME);
     desc: string(STR_GRF_DESCRIPTION);
     version: 18;
