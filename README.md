@@ -38,5 +38,5 @@
 ### Credits
 
 * Signal sprites were made by Patrylec
-* Coding the NewGRF was made by [@username] (https://www.github.com/legitscoper)
-* Special thanks to the OpenTTD Discord server and particularly [@username] (https://www.github.com/JGRennison) for helping us with the Set.
+* Coding the NewGRF was made by legitscoper
+* Special thanks to the OpenTTD Discord server and particularly JGRennison for helping us with the Set.
