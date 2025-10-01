@@ -8,7 +8,7 @@ grf {
     grfid: "2137";
     name: string(STR_GRF_NAME);
     desc: string(STR_GRF_DESCRIPTION);
-    version: 5;
+    version: 18;
     min_compatible_version: 0;
     url: string(STR_GRF_URL);
 
@@ -99,15 +99,16 @@ template tmpl_signals(x,y) {
 }
 
 template tmpl_signals_shunt(x,y) {
-    [x +   0, y, 20, 30, 8, -39] // ne-sw
-    [x +  60, y, 20, 30, -29, -19] // sw-ne
-    [x + 120, y, 20, 30, 11, -20] // se-nw
-    [x + 180, y, 20, 30, -26, -37] // nw-se
-    [x + 300, y, 20, 30, -10, -28] // e-w
-    [x + 240, y, 20, 30, -8, -28] // w-e
-    [x + 360, y, 20, 30, -10, -28] // s-n
-    [x + 420, y, 20, 30, -10, -28] // n-s
+    [x +   0, y, 20, 30, -9, -28] // ne-sw
+    [x +  60, y, 20, 30, -9, -28] // sw-ne
+    [x + 120, y, 20, 30, -9, -28] // se-nw
+    [x + 180, y, 20, 30, -9, -28] // nw-se
+    [x + 300, y, 20, 30, -9, -28] // e-w
+    [x + 240, y, 20, 30, -9, -28] // w-e
+    [x + 360, y, 20, 30, -9, -28] // s-n
+    [x + 420, y, 20, 30, -9, -28] // n-s
 }
+
 
 template tmpl_signals_combined(x, y) {
     [x +   0, y, 20, 30,  -9, -29] // ne-sw
@@ -118,6 +119,17 @@ template tmpl_signals_combined(x, y) {
     [x + 240, y, 20, 30,  -9, -29] // w-e
     [x + 360, y, 20, 30, -10, -29] // s-n
     [x + 420, y, 20, 30, -10, -29] // n-s
+}
+
+template tmpl_signals_top_l(x, y) {
+    [x +   0, y, 20, 30,  -1, -29] // ne-sw
+    [x +  60, y, 20, 30,  -22, -21] // sw-ne
+    [x + 120, y, 20, 30,  4, -21] // se-nw
+    [x + 180, y, 20, 30,  -4, -29] // nw-se
+    [x + 300, y, 20, 30,  -5, -29] // e-w
+    [x + 240, y, 20, 30,  17, -28] // w-e
+    [x + 360, y, 20, 30, -11, -29] // s-n
+    [x + 420, y, 20, 30, -8, -19] // n-s
 }
 
 template tmpl_pbs_signals(x,y) {
@@ -187,16 +199,25 @@ spriteset (signals_combined_yy,    "gfx/light-combined.png") { tmpl_signals_comb
 spriteset (signals_combined_shunt, "gfx/light-combined.png") { tmpl_signals_combined(10, 150) }
 
 // TOP R
-spriteset (signals_top_white_r,  "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
-spriteset (signals_top_orange_r, "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
-spriteset (signals_top_oneway_white_r,   "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
-spriteset (signals_top_oneway_orange_r, "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_1_r,  "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_2_r, "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_3_r,  "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_4_r, "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_oneway_1_r,   "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_oneway_2_r, "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_oneway_3_r,   "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_oneway_4_r, "gfx/light-crossing-R.png") { tmpl_signals_combined(10, 50) }
+
 
 // TOP L
-spriteset (signals_top_white_l,   "gfx/light-crossing-L.png") { tmpl_signals_combined(10, 50) }
-spriteset (signals_top_orange_l, "gfx/light-crossing-L.png") { tmpl_signals_combined(10, 50) }
-spriteset (signals_top_oneway_white_l,   "gfx/light-crossing-L.png") { tmpl_signals_combined(10, 50) }
-spriteset (signals_top_oneway_orange_l, "gfx/light-crossing-L.png") { tmpl_signals_combined(10, 50) }
+spriteset (signals_top_1_l,   "gfx/light-crossing-L.png") { tmpl_signals_top_l(10, 50) }
+spriteset (signals_top_2_l, "gfx/light-crossing-L.png") { tmpl_signals_top_l(10, 50) }
+spriteset (signals_top_3_l,   "gfx/light-crossing-L.png") { tmpl_signals_top_l(10, 50) }
+spriteset (signals_top_4_l, "gfx/light-crossing-L.png") { tmpl_signals_top_l(10, 50) }
+spriteset (signals_top_oneway_1_l,   "gfx/light-crossing-L.png") { tmpl_signals_top_l(10, 50) }
+spriteset (signals_top_oneway_2_l, "gfx/light-crossing-L.png") { tmpl_signals_top_l(10, 50) }
+spriteset (signals_top_oneway_3_l,   "gfx/light-crossing-L.png") { tmpl_signals_top_l(10, 50) }
+spriteset (signals_top_oneway_4_l, "gfx/light-crossing-L.png") { tmpl_signals_top_l(10, 50) }
 
 
 spriteset (signals_combined_red_short,   "gfx/light-combined-short.png") { tmpl_signals_combined(10, 50) }
@@ -254,7 +275,7 @@ switch(FEAT_SIGNALS, SELF, signal_switch_pbs_std, [
 
 switch(FEAT_SIGNALS, SELF, signal_switch_pbs, signal_vertical_clearance < param[11]) {
     default: signal_switch_pbs_std;
-    //1: signal_switch_block_new;
+
 }
 
 switch(FEAT_SIGNALS, SELF, signal_switch_pbs_oneway, [
@@ -386,16 +407,20 @@ switch(FEAT_SIGNALS, SELF, signal_switch_top_r, [
         STORE_TEMP(param[10] + (hasbit(extra_callback_info2, 24) ? 2 : 1), 0x100),
         (extra_callback_info2 & 0x000000FF)
     ]) {
-    0: signals_top_white_r;
-    1: signals_top_orange_r;
+    0: signals_top_1_r;
+    1: signals_top_2_r;
+    2: signals_top_3_r;
+    3: signals_top_4_r;
 }
 
 switch(FEAT_SIGNALS, SELF, signal_switch_top_r_oneway, [
         STORE_TEMP(param[10] + (hasbit(extra_callback_info2, 24) ? 2 : 1), 0x100),
         (extra_callback_info2 & 0x000000FF)
     ]) {
-    0: signals_top_oneway_white_r;
-    1: signals_top_oneway_orange_r;
+    0: signals_top_oneway_1_r;
+    1: signals_top_oneway_2_r;
+    2: signals_top_oneway_3_r;
+    3: signals_top_oneway_4_r;
 }
 
 // TOP L
@@ -404,16 +429,20 @@ switch(FEAT_SIGNALS, SELF, signal_switch_top_l, [
         STORE_TEMP(param[10] + (hasbit(extra_callback_info2, 24) ? 2 : 1), 0x100),
         (extra_callback_info2 & 0x000000FF) | (signal_vertical_clearance < param[11] ? 0x100 : 0)
     ]) {
-    0: signals_top_white_l;
-    1: signals_top_orange_l;
+    0: signals_top_1_l;
+    1: signals_top_2_l;
+    2: signals_top_3_l;
+    3: signals_top_4_l;
 }
 
 switch(FEAT_SIGNALS, SELF, signal_switch_top_l_oneway, [
         STORE_TEMP(param[10] + (hasbit(extra_callback_info2, 24) ? 2 : 1), 0x100),
         (extra_callback_info2 & 0x000000FF) | (signal_vertical_clearance < param[11] ? 0x100 : 0)
     ]) {
-    0: signals_top_oneway_white_l;
-    1: signals_top_oneway_orange_l;
+    0: signals_top_oneway_1_l;
+    1: signals_top_oneway_2_l;
+    2: signals_top_oneway_3_l;
+    3: signals_top_oneway_4_l;
 }
 
 switch(FEAT_SIGNALS, SELF, switch_signals, (extra_callback_info2 & 0x00FFFF00) | signal_style) {
@@ -517,14 +546,12 @@ if (param_custom_styles) {
             style_electric_enabled: 0xB0;
             style_no_aspect_increase: 1;
             style_lookahead_single_signal_only: 1;
-            extra_aspects: 0;
 
             define_style: 0xA;
             style_name: string(STR_STYLE_TOP_L);
             style_electric_enabled: 0xB0;
             style_no_aspect_increase: 1;
             style_lookahead_single_signal_only: 1;
-            extra_aspects: 0;
         }
     }
 }
