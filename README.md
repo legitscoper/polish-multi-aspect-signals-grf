@@ -1,11 +1,10 @@
 # Polish Multi-Aspect Signals NewGRF
 
-![Sample image](https://raw.githubusercontent.com/wiki/JGRennison/multi-aspect-signals-grf/sample-image.png)
-
+![Sample image](https://github.com/user-attachments/assets/d2a9e1f5-e8c1-4780-8ed2-0355e3bebe12)
 ### Features
 
 * This GRF includes 3-aspect signal graphics (red, yellow, green) for the block signal, PBS and one-way PBS signal types.
-* Custom signal styles: shunt, tall shunt, mechanical shunt, banner approach, path with a light strip (cosmetic), left and right side crossing signals (cosmetic), this is enabled by a GRF parameter (default off).
+* Custom signal styles: shunt, tall shunt, mechanical shunt, banner approach, path with a light strip (cosmetic), left and right side crossing signals (cosmetic), this is enabled by a GRF parameter (default on).
 * Two different heights of PBS signal graphics are included. Use the GRF parameter to select which to use, or whether it depends on the available vertical clearance. Short PBS signals requires that block signals are using traditional graphics.
 
 ### Requirements
