@@ -4,9 +4,8 @@
 
 ### Features
 
-* This GRF includes 4-aspect signal graphics (red, yellow, double-yellow, green) for the block signal, PBS and one-way PBS signal types.
-* Two different styles of block signal graphics are included. Use the GRF parameter to select which to use.
-* Custom signal styles: shunt, banner repeater and combined normal/shunt, this is enabled by a GRF parameter (default off).
+* This GRF includes 3-aspect signal graphics (red, yellow, green) for the block signal, PBS and one-way PBS signal types.
+* Custom signal styles: shunt, tall shunt, mechanical shunt, banner approach, path with a light strip (cosmetic), left and right side crossing signals (cosmetic), this is enabled by a GRF parameter (default off).
 * Two different heights of PBS signal graphics are included. Use the GRF parameter to select which to use, or whether it depends on the available vertical clearance. Short PBS signals requires that block signals are using traditional graphics.
 
 ### Requirements
@@ -22,6 +21,7 @@
 
 ### More information
 
+* This NewGRF is based on [JGRennison]'s [Multi aspect signals grf](https://github.com/JGRennison/multi-aspect-signals-grf)
 * For more information on GRF parameters and the different signal types, see the [Wiki](https://github.com/JGRennison/multi-aspect-signals-grf/wiki).
 
 ### Development
@@ -37,5 +37,6 @@
 
 ### Credits
 
-* Yellow block signals (traditional style) by [kiwitreekor](https://github.com/kiwitreekor).
-* Signal sprites are adapted from [OpenGFX](https://github.com/OpenTTD/OpenGFX).
+* Signal sprites were made by Patrylec
+* Coding the NewGRF was made by 
+* Special thanks to the OpenTTD Discord server and particularly [JGRennison] for helping us with the Set.
